@@ -34,11 +34,7 @@ const options = {
   family: 4
 };
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://nielrobe:GhostMantis9@cluster0-iyhb0.mongodb.net/test?retryWrites=true&w=majority";
+const MONGODB_URL = "mongodb+srv://nielrobe:GhostMantis9@cluster0-iyhb0.mongodb.net/test?retryWrites=true&w=majority";
 console.log(MONGODB_URL)
 
 // Route setup. You can implement more in the future!
@@ -79,7 +75,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 mongoose
   .connect(
-    MONGODB_URL//, options
+    MONGODB_URL, options
   )
   .then(result => {
     // This should be your user handling code implement following the course videos
