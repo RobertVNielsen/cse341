@@ -9,11 +9,28 @@
 <div class="jumbotron text-center">
   <div class="container">
     <h1><%= title %></h1>
-    <p>This is the placeholder for Team Activity 04</p>
   </div>
 </div>
 <div class="container">
-  
+    <div>
+        <form action="/admin/add-product" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label><br>
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label><br>
+                <input type="number" name="price" id="price">
+            </div>
+            <div class="form-control">
+                <label for="description">Description</label><br>
+                <textarea name="description" id="description" rows="5"></textarea>
+            </div>
+            <div>
+                <button type="submit">Submit Book</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 
