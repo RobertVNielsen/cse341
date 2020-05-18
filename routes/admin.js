@@ -1,20 +1,23 @@
-//const path = require('path')
+//TA04 PLACEHOLDER
 const express = require('express');
 const router = express.Router();
+const adminController = require('../controllers/admin');
 
-//const adminController = require('../controllers/admin');
+router.post('/edit-product', adminController.postEditProduct)
+router.post('/delete-product', adminController.postDeleteProduct)
 
-//router.get('/add-product', adminController.getAddProduct)
+router.post('/add-product', adminController.postAddProduct)
 
-//router.post('/add-product', adminController.postAddProduct)
-console.log('first')
-router.get('/' ,(req, res, next) => {
-    console.log('second')
-    res.render('pages/admin', { 
-        title: 'Admin', 
-        path: '/admin', 
+router.get('/', adminController.getAddProduct)
+
+
+/*router.get('/',(req, res, next) => {
+    res.render('pages/add', { 
+        title: 'Interact with database', 
+        path: '/add', // For pug, EJS 
+        activeTA04: true, // For HBS
+        contentCSS: true, // For HBS
     });
-    console.log('third')
-});
+});*/
 
 module.exports = router;
