@@ -44,7 +44,7 @@ const ta03Routes = require('./routes/ta03');
 const ta04Routes = require('./routes/ta04'); 
 const prove02Data = require('./routes/prove02'); 
 const bookInfoRoutes = require('./routes/bookInfo'); 
-const addProductRoutes = require('./routes/add-product'); 
+const adminRoutes = require('./routes/admin'); 
 
 
 app.use(express.static(path.join(__dirname, 'public')))
