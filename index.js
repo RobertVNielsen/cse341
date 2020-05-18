@@ -62,7 +62,7 @@ app.use(express.static(path.join(__dirname, 'public')))
    .use('/ta04', ta04Routes)
    .use('/prove02', prove02Data.routes)
    .use('/bookInfo', bookInfoRoutes)
-   //.use('/add-product', addProductRoutes)
+   ////////.use('/add-product', addProductRoutes)
    .get('/', (req, res, next) => {
      // This is the primary index, always handled last. 
      res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
@@ -72,8 +72,8 @@ app.use(express.static(path.join(__dirname, 'public')))
      res.render('pages/404', {title: '404 - Page Not Found', path: req.url})
    })
    .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-mongoose
+///////////////////
+/* mongoosekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
   .connect(
     MONGODB_URL, options
   )
@@ -83,4 +83,4 @@ mongoose
   })
   .catch(err => {
     console.log(err);
-  });
+  }); */
