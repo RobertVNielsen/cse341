@@ -72,8 +72,8 @@ app.use(express.static(path.join(__dirname, 'public')))
      res.render('pages/404', {title: '404 - Page Not Found', path: req.url})
    })
    .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-///////////////////
-/* mongoosekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+mongoose
   .connect(
     MONGODB_URL, options
   )
@@ -83,4 +83,4 @@ app.use(express.static(path.join(__dirname, 'public')))
   })
   .catch(err => {
     console.log(err);
-  }); */
+  }); 
