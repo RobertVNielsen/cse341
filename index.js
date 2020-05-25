@@ -24,7 +24,9 @@ const app = express();
 app.use(
   session({secret: 'secret', resave: false, saveUninitialized: false})
 )
-app.use(flash);
+console.log('before')
+
+console.log('after')
 
 const corsOptions = {
   origin: "https://prove-assignments.herokuapp.com/",
@@ -43,6 +45,8 @@ const options = {
 const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://nielrobe:GhostMantis9@cluster0-iyhb0.mongodb.net/test?retryWrites=true&w=majority";
 console.log(MONGODB_URL)
 
+app.use(flash());
+
 // Route setup. You can implement more in the future!
 const ta01Routes = require('./routes/ta01');
 const ta02Routes = require('./routes/ta02');
@@ -53,6 +57,8 @@ const bookInfoRoutes = require('./routes/bookInfo');
 const adminRoutes = require('./routes/admin'); 
 const loginRoutes = require('./routes/login');
 const createAccountRoutes = require('./routes/create_account');
+
+console.log('where?')
 
 app.use(express.static(path.join(__dirname, 'public')))
    .set('views', path.join(__dirname, 'views'))
@@ -74,6 +80,7 @@ app.use(express.static(path.join(__dirname, 'public')))
    .use('/create_account', createAccountRoutes)
    .get('/', (req, res, next) => {
      // This is the primary index, always handled last. 
+     console.log('here?')
      res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
     })
    .use((req, res, next) => {

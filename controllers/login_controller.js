@@ -8,7 +8,7 @@ exports.init = (req, res, next) => {
         path: '/login', // For pug, EJS 
         activeTA04: true, // For HBS
         contentCSS: true, // For HBS
-        errMessage: flash('failed')
+        errMessage: req.flash('failed')
     });
 }
 
@@ -17,10 +17,11 @@ exports.login = (req, res, next) => {
     console.log(email)
     const password = req.body.password;
     console.log(password)
-    User.findOne({email:'nie16043@byui.edu'})
+    User.findOne({email:email})
         .then(user => {
             console.log(user)
             if (!user) {
+                
                 req.flash('failed', "Invalid email or password");
                 return res.redirect('/login');
             }
