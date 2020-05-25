@@ -12,6 +12,9 @@ exports.signup = (req, res, next) => {
 }
 
 exports.create = (req, res, next) => {
+    const fName = req.body.fName;
+    const lName = req.body.lName;
+    const country = req.body.country;
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
@@ -25,6 +28,9 @@ exports.create = (req, res, next) => {
                 .hash(password, 12)
                 .then(hashedPassword => {
                     const user = new User({
+                        fName: fName,
+                        lName: lName,
+                        country: country,
                         email: email,
                         password: hashedPassword
                     })
