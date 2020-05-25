@@ -1,14 +1,15 @@
 //TA04 PLACEHOLDER
 const express = require('express');
 const router = express.Router();
-const adminController = require('../controllers/admin');
+const adminController = require('../controllers/admin_controller');
+const auth = require('../middleware/is_auth')
 
-router.post('/edit-product', adminController.postEditProduct)
-router.post('/delete-product', adminController.postDeleteProduct)
+router.post('/edit-product', auth, adminController.postEditProduct)
+router.post('/delete-product', auth, adminController.postDeleteProduct)
 
-router.post('/add-product', adminController.postAddProduct)
+router.post('/add-product', auth, adminController.postAddProduct)
 
-router.get('/', adminController.getAddProduct)
+router.get('/', auth, adminController.getAddProduct)
 
 
 /*router.get('/',(req, res, next) => {

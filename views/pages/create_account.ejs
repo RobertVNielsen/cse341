@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <% include ../includes/header.ejs %>
+    </head>
+
+    <body>
+        <% include ../includes/nav.ejs %>
+        <div class="jumbotron text-center">
+            <div class="container">
+                <h1><%= title %></h1>
+            </div>
+        </div>
+        <div class="container">
+            <div>
+                <form action="/create_account/create" method="POST">
+                    <div>
+                        <label for="email">email</label><br>
+                        <input type="text" name="email" id="email">
+                    </div>
+                    <div>
+                        <label for="password">password</label><br>
+                        <input type="text" name="password" id="password">
+                    </div>
+                    <div>
+                        <label for="confirmPassword">confirm password</label><br>
+                        <input type="text" name="confirmPassword" id="confirmPassword">
+                    </div>
+                    <div>
+                        <button type="submit">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br />
+        <br />
+    </body>
+</html>

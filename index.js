@@ -16,9 +16,15 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors')
 const mongoose = require('mongoose')
+const session = require('express-session')
+const flash = require('connect-flash')
 const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localhost:5000
 
 const app = express();
+app.use(
+  session({secret: 'secret', resave: false, saveUninitialized: false})
+)
+app.use(flash);
 
 const corsOptions = {
   origin: "https://prove-assignments.herokuapp.com/",
@@ -45,7 +51,8 @@ const ta04Routes = require('./routes/ta04');
 const prove02Data = require('./routes/prove02'); 
 const bookInfoRoutes = require('./routes/bookInfo'); 
 const adminRoutes = require('./routes/admin'); 
-
+const loginRoutes = require('./routes/login');
+const createAccountRoutes = require('./routes/create_account');
 
 app.use(express.static(path.join(__dirname, 'public')))
    .set('views', path.join(__dirname, 'views'))
@@ -60,9 +67,11 @@ app.use(express.static(path.join(__dirname, 'public')))
    .use('/ta02', ta02Routes) 
    .use('/ta03', ta03Routes) 
    .use('/ta04', ta04Routes)
+   .use('/admin', adminRoutes)
    .use('/prove02', prove02Data.routes)
    .use('/bookInfo', bookInfoRoutes)
-   .use('/admin', adminRoutes)
+   .use('/login', loginRoutes)
+   .use('/create_account', createAccountRoutes)
    .get('/', (req, res, next) => {
      // This is the primary index, always handled last. 
      res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
