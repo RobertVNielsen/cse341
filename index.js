@@ -56,6 +56,8 @@ const prove02Data = require('./routes/prove02');
 const bookInfoRoutes = require('./routes/bookInfo'); 
 const adminRoutes = require('./routes/admin'); 
 const loginRoutes = require('./routes/login');
+const editRoutes = require('./routes/edit');
+const shopRoutes = require("./routes/shop")
 const createAccountRoutes = require('./routes/create_account');
 
 console.log('where?')
@@ -77,6 +79,8 @@ app.use(express.static(path.join(__dirname, 'public')))
    .use('/prove02', prove02Data.routes)
    .use('/bookInfo', bookInfoRoutes)
    .use('/login', loginRoutes)
+   .use('/edit', editRoutes)
+   .use('/shop', shopRoutes)
    .use('/create_account', createAccountRoutes)
    .get('/', (req, res, next) => {
      // This is the primary index, always handled last. 

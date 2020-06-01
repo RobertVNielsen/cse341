@@ -6,13 +6,43 @@
 
 <body>
   <% include ../includes/nav.ejs %>
+
 <div class="jumbotron text-center">
   <div class="container">
     <h1><%= title %></h1>
   </div>
+  <nav>
+    <a style="color: #ffffff;" href="/shop">Shop</a> |
+    <a style="color: #ffffff;" href="/admin">Manage Products</a> | 
+    <a style="color: #ffffff;" href="/login">Sign in</a>
+  </nav>
 </div>
 <div class="container">
     <div>
+        <table style="width:75%; float: right;">
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+            <% for (var i = 0; i < products.length; i++) { %>
+                <tr>
+                    <td><a href="edit/<%= products[i].title %>">Update</a></td>
+                    <td><%= products[i].title %></td>
+                    <td><%= products[i].description %></td>
+                    <td>$<%= products[i].price %></td>
+                    <td>
+                        <form action="/admin/delete-product" method="POST">
+                            <input type="hidden" name="deletetitle" value="<%= products[i].title %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+        
         <form action="/admin/add-product" method="POST">
             <div>
                 <label for="title">Title</label><br>
@@ -32,18 +62,29 @@
         </form>
     </div>
 </div>
+<!--
 <div class="container">
     <br />Products
     <div>
+        
         <ul>
             <% for (var i = 0; i < products.length; i++) { %>
-                <li><%= products[i].title %>: <%= products[i].description %>  -  $<%= products[i].price %></li>
+                <li>
+                    <%= products[i].title %>: <%= products[i].description %>  <br />  $<%= products[i].price %>
+                    <br /><a href="admin/<%= products[i].title %>">View Details</a>
+                    <a href="admin/update-product/<%= products[i].title %>">Update</a>
+                    <form action="/admin/delete-product" method="POST">
+                        <input type="hidden" name="deletetitle" value="<%= products[i].title %>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
             <% } %>
             
         </ul>
         <br />
     </div>
-</div>
+</div> 
+
 <div class="container">
     <div>
         <form action="/admin/edit-product" method="POST">
@@ -83,6 +124,7 @@
         </form>
     </div>
 </div>
+-->
 <br />
 <br />
 </body>

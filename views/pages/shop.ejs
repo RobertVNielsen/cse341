@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../includes/header.ejs %>
+</head>
+
+<body>
+  <% include ../includes/nav.ejs %>
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1><%= title %></h1>
+  </div>
+  <nav>
+    <a style="color: #ffffff;" href="/shop">Shop</a> |
+    <a style="color: #ffffff;" href="/admin">Manage Products</a> | 
+    <a style="color: #ffffff;" href="/login">Sign in</a>
+  </nav>
+</div>
+<div class="container">
+    <div>
+        <table style="width:75%; float: right;">
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+            <% for (var i = 0; i < products.length; i++) { %>
+                <tr>
+                    <td><%= products[i].title %></td>
+                    <td><%= products[i].description %></td>
+                    <td>$<%= products[i].price %></td>
+                    <td>
+                        <form action="/shop/add" method="POST">
+                            <input type="hidden" name="title" value="<%= products[i].title %>">
+                            <button type="submit">Add to cart</button>
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+        <form action="/shop/order" method="POST">
+        <h1>Cart</h1>
+        <table style="width:20%; border: 2px solid black; padding: 15px;">
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+            </tr> 
+            <% for (var i = 0; i < cart.length; i++) { %>
+                <tr>
+                    <td><%= cart[i].title %></td>
+                    <td>$<%= cart[i].price %></td>
+                </tr>
+            <% } %>  
+        </table>
+        <br />
+        <div>
+            <button type="submit">Place Order</button>
+        </div>
+        </form>
+    </div>
+</div>
+<!--
+<div class="container">
+    <br />Products
+    <div>
+        
+        <ul>
+            <% for (var i = 0; i < products.length; i++) { %>
+                <li>
+                    <%= products[i].title %>: <%= products[i].description %>  <br />  $<%= products[i].price %>
+                    <br /><a href="admin/<%= products[i].title %>">View Details</a>
+                    <a href="admin/update-product/<%= products[i].title %>">Update</a>
+                    <form action="/admin/delete-product" method="POST">
+                        <input type="hidden" name="deletetitle" value="<%= products[i].title %>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            <% } %>
+            
+        </ul>
+        <br />
+    </div>
+</div> 
+
+<div class="container">
+    <div>
+        <form action="/admin/edit-product" method="POST">
+            <div>
+                <label for="oldtitle">Old Title</label><br>
+                <input type="text" name="oldtitle" id="oldtitle">
+            </div>
+            <div>
+                <label for="utitle">Updated Title</label><br>
+                <input type="text" name="utitle" id="utitle">
+            </div>
+            <div>
+                <label for="uprice">Updated Price</label><br>
+                <input type="number" name="uprice" id="uprice">
+            </div>
+            <div>
+                <label for="udescription">Updated Description</label><br>
+                <textarea name="udescription" id="udescription" rows="5"></textarea>
+            </div>
+            <div>
+                <button type="submit">Update Product</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div class="container">
+    <div>
+        <form action="/admin/delete-product" method="POST">
+            <div>
+                <label for="deletetitle">Title</label><br>
+                <input type="text" name="deletetitle" id="deletetitle">
+            </div>
+            <div>
+                <button type="submit">Delete Product</button>
+            </div>
+        </form>
+    </div>
+</div>
+-->
+<br />
+<br />
+</body>
+</html>

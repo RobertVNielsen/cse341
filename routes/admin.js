@@ -6,6 +6,7 @@ const auth = require('../middleware/is_auth')
 
 router.post('/edit-product', auth, adminController.postEditProduct)
 router.post('/delete-product', auth, adminController.postDeleteProduct)
+router.get('/delete-product', auth, adminController.getDeleteProduct)
 
 router.post('/add-product', auth, adminController.postAddProduct)
 

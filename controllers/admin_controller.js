@@ -1,6 +1,13 @@
 const Product = require('../models/product');
 //const mongoose = require('mongoose')
 // const Product = mongoose.model("Product", schema)
+/*
+req.session.destroy(err => {
+        if(err){
+            console.log(err)
+        }
+    })
+    */
 
 exports.getAddProduct = (req, res, next) => {
     Product
@@ -10,7 +17,7 @@ exports.getAddProduct = (req, res, next) => {
             console.log(products);
             res.render('pages/add', { 
                 products: products,
-                title: 'Interact with database', 
+                title: 'Manage Products', 
                 path: '/add', // For pug, EJS 
                 activeTA04: true, // For HBS
                 contentCSS: true, // For HBS
@@ -59,6 +66,26 @@ exports.postEditProduct = (req, res, next) => {
         .then(result => {
             console.log("Updated Product");
             res.redirect('/admin')
+        })
+        .catch(err => {
+            console.log(err); 
+        })
+}
+
+exports.getDeleteProduct = (req, res, next) => {
+    console.log("Displa");
+    Product
+        .find()
+        .then(products => {
+            console.log("Displayed Products");
+            console.log(products);
+            res.render('pages/delete_product', { 
+                products: products,
+                title: 'Delete Product', 
+                path: '/delete_product', // For pug, EJS 
+                activeTA04: true, // For HBS
+                contentCSS: true, // For HBS
+            });
         })
         .catch(err => {
             console.log(err); 
